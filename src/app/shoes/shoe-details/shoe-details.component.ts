@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormBuilder,
+  Validators
+} from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 
@@ -12,16 +17,42 @@ import { ProductdataService } from '../../productdata.service';
   styleUrls: ['./shoe-details.component.css']
 })
 export class ShoeDetailsComponent implements OnInit {
-  // id: number;
-  // shoeID: string;
   product: Product;
   errors: string[];
+  private deptList: string[] = [
+    'ammunition',
+    'archery',
+    'firearms',
+    'hunting',
+    'license',
+    'marine',
+    'nc tags',
+    'sporting goods'
+  ];
+  private catList: string[] = [
+    'accessories',
+    'apparel',
+    'boats',
+    'footwear',
+    'labor',
+    'optics',
+    'outboard motors',
+    'parts',
+    'pistols',
+    'rifles',
+    'skiwear',
+    'trailers'
+  ];
+  editForm: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private productService: ProductdataService
-  ) {}
+    private productService: ProductdataService,
+    private fb: FormBuilder
+  ) {
+    this.createForm();
+  }
 
   ngOnInit() {
     // get the id of the selected product passed through params
@@ -29,11 +60,11 @@ export class ShoeDetailsComponent implements OnInit {
       .pipe(
         switchMap(params => this.productService.getProduct(params.get('id')))
       )
-
       .subscribe(
         product => {
           console.log('shoe-details.component --> got the shoe', product);
           this.product = product;
+          this.setFormValues();
         },
         error => {
           console.log('shoe-details.component --> error getting shoe');
@@ -43,7 +74,8 @@ export class ShoeDetailsComponent implements OnInit {
   }
 
   onSubmit(prod: Product) {
-    this.productService.updateProduct(prod).subscribe(
+    const cleanData = Object.assign({}, this.product, this.editForm.value);
+    this.productService.updateProduct(cleanData).subscribe(
       updatedProd => {
         console.log(
           'shoe-details.component --> successfully updated shoe',
@@ -74,5 +106,46 @@ export class ShoeDetailsComponent implements OnInit {
         this.errors = error.error;
       }
     );
+  }
+
+  // attempting reactive forms
+  createForm() {
+    this.editForm = this.fb.group({
+      upc: ['', [Validators.required, Validators.minLength(12)]],
+      dept: ['', Validators.required],
+      category: ['', Validators.required],
+      brand: ['', Validators.required],
+      desc: ['', Validators.required],
+      cost: ['0', [Validators.required, Validators.min(0)]],
+      price: ['0', [Validators.required, Validators.min(0)]],
+      suggestedRetail: ['0', Validators.min(0)],
+      color: '',
+      style: '',
+      size: '',
+      qty: ['0', [Validators.required, Validators.min(0)]],
+      image: ''
+    });
+  }
+
+  setFormValues() {
+    this.editForm.setValue({
+      upc: this.product.upc,
+      dept: this.product.dept,
+      category: this.product.category,
+      brand: this.product.brand,
+      desc: this.product.desc,
+      cost: this.product.cost,
+      price: this.product.price,
+      suggestedRetail: this.product.suggestedRetail,
+      color: this.product.color,
+      style: this.product.style,
+      size: this.product.size,
+      qty: this.product.qty,
+      image: this.product.image
+    });
+  }
+
+  reset() {
+    this.setFormValues();
   }
 }
