@@ -14,7 +14,7 @@
 
       <div>
         <label for="upc">UPC</label>
-        <input type="number" formControlName="upc" required minlength="12">
+        <input type="number" formControlName="upc">
 
         <p *ngIf="editForm.controls['upc'].errors && !editForm.controls['upc'].pristine" class="text-error">
           Please enter the 12-digit UPC code.

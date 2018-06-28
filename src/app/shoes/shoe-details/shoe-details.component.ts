@@ -43,16 +43,28 @@ export class ShoeDetailsComponent implements OnInit {
     'skiwear',
     'trailers'
   ];
-  editForm: FormGroup;
+  editForm: FormGroup = this.fb.group({
+    upc: ['', [Validators.required, Validators.minLength(12)]],
+    dept: ['', Validators.required],
+    category: ['', Validators.required],
+    brand: ['', Validators.required],
+    desc: ['', Validators.required],
+    cost: ['0', [Validators.required, Validators.min(0)]],
+    price: ['0', [Validators.required, Validators.min(0)]],
+    suggestedRetail: ['0', Validators.min(0)],
+    color: '',
+    style: '',
+    size: '',
+    qty: ['0', [Validators.required, Validators.min(0)]],
+    image: ''
+  });
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private productService: ProductdataService,
     private fb: FormBuilder
-  ) {
-    this.createForm();
-  }
+  ) {}
 
   ngOnInit() {
     // get the id of the selected product passed through params
@@ -64,7 +76,7 @@ export class ShoeDetailsComponent implements OnInit {
         product => {
           console.log('shoe-details.component --> got the shoe', product);
           this.product = product;
-          this.setFormValues();
+          this.editForm.patchValue(this.product);
         },
         error => {
           console.log('shoe-details.component --> error getting shoe');
@@ -108,44 +120,25 @@ export class ShoeDetailsComponent implements OnInit {
     );
   }
 
-  // attempting reactive forms
-  createForm() {
-    this.editForm = this.fb.group({
-      upc: ['', [Validators.required, Validators.minLength(12)]],
-      dept: ['', Validators.required],
-      category: ['', Validators.required],
-      brand: ['', Validators.required],
-      desc: ['', Validators.required],
-      cost: ['0', [Validators.required, Validators.min(0)]],
-      price: ['0', [Validators.required, Validators.min(0)]],
-      suggestedRetail: ['0', Validators.min(0)],
-      color: '',
-      style: '',
-      size: '',
-      qty: ['0', [Validators.required, Validators.min(0)]],
-      image: ''
-    });
-  }
-
-  setFormValues() {
-    this.editForm.setValue({
-      upc: this.product.upc,
-      dept: this.product.dept,
-      category: this.product.category,
-      brand: this.product.brand,
-      desc: this.product.desc,
-      cost: this.product.cost,
-      price: this.product.price,
-      suggestedRetail: this.product.suggestedRetail,
-      color: this.product.color,
-      style: this.product.style,
-      size: this.product.size,
-      qty: this.product.qty,
-      image: this.product.image
-    });
-  }
+  // setFormValues() {
+  //   this.editForm.setValue({
+  //     upc: this.product.upc,
+  //     dept: this.product.dept,
+  //     category: this.product.category,
+  //     brand: this.product.brand,
+  //     desc: this.product.desc,
+  //     cost: this.product.cost,
+  //     price: this.product.price,
+  //     suggestedRetail: this.product.suggestedRetail,
+  //     color: this.product.color,
+  //     style: this.product.style,
+  //     size: this.product.size,
+  //     qty: this.product.qty,
+  //     image: this.product.image
+  //   });
+  // }
 
   reset() {
-    this.setFormValues();
+    this.editForm.patchValue(this.product);
   }
 }
