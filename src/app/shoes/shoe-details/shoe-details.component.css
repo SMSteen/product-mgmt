@@ -28,3 +28,14 @@ img {
   display: block;
   margin: 10px auto;
 }
+form .reset {
+  background-color: #ced1e3;
+  color: black;
+  border: 1px solid #343a5c;
+  margin: 0 0 15px 0;
+}
+@media screen and (max-width: 700px) {
+  .reset {
+    float: right;
+  }
+}
