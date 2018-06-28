@@ -47,7 +47,7 @@
 
       <div>
         <label for="brand">Brand</label>
-        <input type="text" formControlName="brand" required>
+        <input type="text" formControlName="brand">
 
         <p *ngIf="editForm.controls['brand'].errors && !editForm.controls['brand'].pristine" class="text-error">
           Please enter the brand name.
@@ -56,7 +56,7 @@
 
       <div>
         <label for="desc">Item</label>
-        <input type="text" formControlName="desc" required>
+        <input type="text" formControlName="desc">
 
         <p *ngIf="editForm.controls['desc'].errors && !editForm.controls['desc'].pristine" class="text-error">
           Please enter the name or a brief description of the item.
@@ -65,7 +65,7 @@
 
       <div>
         <label for="cost">Cost</label>
-        <input type="number" formControlName="cost" required min="0" step=".01">
+        <input type="number" formControlName="cost" step=".01">
 
         <p *ngIf="editForm.controls['cost'].errors && !editForm.controls['cost'].pristine" class="text-error">
           Please enter the cost for this item.
@@ -74,7 +74,7 @@
 
       <div>
         <label for="price">Price</label>
-        <input type="number" formControlName="price" required min="0" step=".01">
+        <input type="number" formControlName="price" step=".01">
 
         <p *ngIf="editForm.controls['price'].errors && !editForm.controls['price'].pristine" class="text-error">
           Please enter the selling price of this item.
@@ -83,7 +83,7 @@
 
       <div>
         <label for="suggestedRetail">Suggested Retail Price</label>
-        <input type="number" formControlName="suggestedRetail" min="0" step=".01">
+        <input type="number" formControlName="suggestedRetail" step=".01">
       </div>
 
       <div>
@@ -103,7 +103,11 @@
 
       <div>
         <label for="qty">Quantity</label>
-        <input type="number" formControlName="qty" required min="0">
+        <input type="number" formControlName="qty">
+
+        <p *ngIf="editForm.controls['qty'].errors && !editForm.controls['qty'].pristine" class="text-error">
+          Please enter the quantity on hand for this item.
+        </p>
       </div>
 
       <div>
@@ -115,10 +119,10 @@
     </form>
 
     <div class="visual-display">
-      <img *ngIf="!product?.image" src="/assets/images/no-image.jpg" alt="no image">
-      <img *ngIf="product?.image" src="{{product?.image}}" alt="{{product?.item}}">
-      <button *ngIf="product?.qty > 0" class="btn-primary" disabled>Remove Item</button>
-      <button *ngIf="!product?.qty" class="btn-primary" (click)="onDelete(product._id)">Remove Item</button>
+      <img *ngIf="!product.image" src="/assets/images/no-image.jpg" alt="no image">
+      <img *ngIf="product.image" src="{{product.image}}" alt="{{product.item}}">
+      <button *ngIf="product.qty > 0" class="btn-primary" disabled>Remove Item</button>
+      <button *ngIf="!product.qty" class="btn-primary" (click)="onDelete(product._id)">Remove Item</button>
     </div>
   </div>
 </div>

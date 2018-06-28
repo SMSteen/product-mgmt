@@ -120,24 +120,6 @@ export class ShoeDetailsComponent implements OnInit {
     );
   }
 
-  // setFormValues() {
-  //   this.editForm.setValue({
-  //     upc: this.product.upc,
-  //     dept: this.product.dept,
-  //     category: this.product.category,
-  //     brand: this.product.brand,
-  //     desc: this.product.desc,
-  //     cost: this.product.cost,
-  //     price: this.product.price,
-  //     suggestedRetail: this.product.suggestedRetail,
-  //     color: this.product.color,
-  //     style: this.product.style,
-  //     size: this.product.size,
-  //     qty: this.product.qty,
-  //     image: this.product.image
-  //   });
-  // }
-
   reset() {
     this.editForm.patchValue(this.product);
   }
