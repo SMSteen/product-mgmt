@@ -9,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 
 import { Product } from '../../product';
-import { ProductdataService } from '../../productdata.service';
+import { ProductdataService } from '../../services/productdata.service';
 
 @Component({
   selector: 'app-shoe-details',
@@ -55,22 +55,9 @@ export class ShoeDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    // get the id of the selected product passed through params
-    this.route.paramMap
-      .pipe(
-        switchMap(params => this.productService.getProduct(params.get('id')))
-      )
-      .subscribe(
-        product => {
-          console.log('shoe-details.component --> got the shoe', product);
-          this.product = product;
-          this.setFormValues();
-        },
-        error => {
-          console.log('shoe-details.component --> error getting shoe');
-          this.errors = error.error;
-        }
-      );
+    this.product = this.route.snapshot.data.product;
+    console.log('shoe-details.component --> got the shoe', this.product);
+    this.setFormValues();
   }
 
   onSubmit(prod: Product) {

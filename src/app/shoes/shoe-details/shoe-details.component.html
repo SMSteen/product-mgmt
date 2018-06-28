@@ -115,10 +115,10 @@
     </form>
 
     <div class="visual-display">
-      <img *ngIf="!product?.image" src="/assets/images/no-image.jpg" alt="no image">
-      <img *ngIf="product?.image" src="{{product?.image}}" alt="{{product?.item}}">
-      <button *ngIf="product?.qty > 0" class="btn-primary" disabled>Remove Item</button>
-      <button *ngIf="!product?.qty" class="btn-primary" (click)="onDelete(product._id)">Remove Item</button>
+      <img *ngIf="!product.image" src="/assets/images/no-image.jpg" alt="no image">
+      <img *ngIf="product.image" src="{{product.image}}" alt="{{product.item}}">
+      <button *ngIf="product.qty > 0" class="btn-primary" disabled>Remove Item</button>
+      <button *ngIf="!product.qty" class="btn-primary btn-delete" (click)="onDelete(product._id)">Remove Item</button>
     </div>
   </div>
 </div>

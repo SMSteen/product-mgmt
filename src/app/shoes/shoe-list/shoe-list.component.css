@@ -20,6 +20,12 @@ h1:nth-of-type(1) {
   margin-left: 1%;
   vertical-align: super;
 }
+.product-list {
+  display: inline-block;
+}
+.product-list.smaller {
+  width: 80%;
+}
 .product {
   display: inline-block;
   width: 23%;
@@ -28,16 +34,6 @@ h1:nth-of-type(1) {
   margin: 5px;
   background-color: #fbfaf9;
   text-align: center;
-}
-@media only screen and (max-width: 1024px) {
-  .product {
-    width: 45%;
-  }
-}
-@media only screen and (max-width: 758px) {
-  .product {
-    width: 90%;
-  }
 }
 .product img {
   width: 50%;
@@ -50,30 +46,98 @@ h1:nth-of-type(1) {
 .product h1 {
   color: #535c93;
   margin: 0;
+  font-size: 160%;
 }
 .spacer {
   margin: 5px 10px;
+}
+a {
+  font-size: 1em;
 }
 a.btn,
 .btn-delete {
   display: block;
   margin: 10px auto;
-  width: 47%;
+  width: 120px;
   padding: 5px;
   border-radius: 10px;
   background-color: buttonface;
   border: 2px solid #004d1a;
   color: #004d1a;
   font-weight: bold;
-  font-size: 1.3em;
+  font-size: 1em;
   box-shadow: 2px 2px 2px #808080;
   text-decoration: none;
 }
 .btn-delete {
   color: #990000;
   border-color: #990000;
-  font-size: 1.2em;
   padding: 7px;
-  width: 50%;
+  width: 125px;
   cursor: pointer;
+}
+.search {
+  display: inline-block;
+  width: 60%;
+  margin-left: 10%;
+}
+input[name='search'] {
+  padding: 8px;
+  vertical-align: text-bottom;
+}
+.btn-search {
+  width: 36px;
+  height: 36px;
+  display: inline-block;
+  vertical-align: top;
+  background-image: url('/assets/images/search.png');
+  background-repeat: no-repeat;
+  background-size: 75%;
+  background-position: center;
+  border: 0.1px solid #252525;
+  border-radius: 0;
+  box-shadow: none;
+  background-color: #ced1e3;
+}
+.btn-search-clr {
+  background-image: none;
+  color: black;
+  font-size: 150%;
+}
+
+@media only screen and (max-width: 1024px) {
+  .product {
+    width: 45%;
+  }
+}
+@media only screen and (max-width: 950px) {
+  .product-list.smaller {
+    width: 70%;
+  }
+  .product {
+    width: 45%;
+  }
+  .product h1 {
+    font-size: 150%;
+  }
+}
+@media only screen and (max-width: 758px) {
+  /* .product-list.smaller {
+    width: 60%;
+  } */
+  .product {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 758px) {
+  .search {
+    display: block;
+    width: 90%;
+    margin-left: 5px;
+  }
+}
+@media only screen and (max-width: 650px) {
+  .search {
+    display: none;
+  }
 }
