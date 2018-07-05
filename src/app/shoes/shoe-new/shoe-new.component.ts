@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Product } from '../../product';
-import { ProductdataService } from '../../productdata.service';
+import { ProductdataService } from '../../services/productdata.service';
 
 @Component({
   selector: 'app-shoe-new',

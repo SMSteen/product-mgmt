@@ -33,6 +33,7 @@ const productSchema = new Schema(
         'accessories',
         'apparel',
         'boats',
+        'bows',
         'footwear',
         'labor',
         'optics',
@@ -89,11 +90,19 @@ const productSchema = new Schema(
       type: Number,
       trim: true
     },
-    color: {
+    style: {
       type: String,
       trim: true
     },
-    style: {
+    partNo: {
+      type: String,
+      trim: true
+    },
+    serialNo: {
+      type: String,
+      trim: true
+    },
+    color: {
       type: String,
       trim: true
     },

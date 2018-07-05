@@ -1,0 +1,26 @@
+.container {
+  padding: 10px;
+  vertical-align: top;
+  display: inline-block;
+  width: 15%;
+  margin: 0 10px;
+  border: 0.5px solid #808080;
+}
+.filter-options h2 {
+  margin: 5px 0;
+}
+.filter-options {
+  margin: 0;
+  padding: 10px;
+  /* border: 0.5px solid #808080; */
+}
+.filter-options label {
+  display: inline-block;
+  width: 80%;
+}
+.filter-options input {
+  display: inline-block;
+  width: 10%;
+  margin-right: 5px;
+  vertical-align: top;
+}

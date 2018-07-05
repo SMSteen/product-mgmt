@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ProductdataService } from '../../productdata.service';
+import { ProductdataService } from '../../services/productdata.service';
 import { Product } from '../../product';
 
 @Component({
@@ -11,6 +11,14 @@ import { Product } from '../../product';
 export class ShoeListComponent implements OnInit {
   products: Product[] = [];
   errorMessage: string;
+  filter: string;
+  departments: string[] = [];
+  categories: string[] = [];
+  brands: string[] = [];
+  items: string[] = [];
+  styles: string[] = [];
+  sizes: any[] = [];
+  showFilterOptions = false;
 
   constructor(private productService: ProductdataService) {}
 
@@ -41,5 +49,13 @@ export class ShoeListComponent implements OnInit {
         this.errorMessage = error.error;
       }
     );
+  }
+
+  search(searchVal) {
+    this.filter = searchVal;
+  }
+
+  clearSearch() {
+    this.filter = '';
   }
 }

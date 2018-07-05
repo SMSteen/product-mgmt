@@ -1,0 +1,51 @@
+<div class="container" *ngIf="showFilterOptions">
+
+  <div *ngIf="departments.length > 1" class="filter-options">
+    <h2>Departments</h2>
+    <div *ngFor="let dept of departments">
+      <input type="checkbox" name="deptFilter" value="{{dept}}">
+      <label for="deptFilter">{{ dept | titlecase }}</label>
+    </div>
+  </div>
+
+  <div *ngIf="categories.length > 1" class="filter-options">
+    <h2>Categories</h2>
+    <div *ngFor="let cat of categories">
+      <input type="checkbox" name="catFilter" value="{{cat}}">
+      <label for="catFilter">{{ cat | titlecase }}</label>
+    </div>
+  </div>
+
+  <div *ngIf="brands.length > 1" class="filter-options">
+    <h2>Brands</h2>
+    <div *ngFor="let brand of brands">
+      <input type="checkbox" name="brandFilter" value="{{brand}}" ng-click="applyFilter(brand)">
+      <label for="brandFilter">{{ brand | titlecase }}</label>
+    </div>
+  </div>
+
+  <div *ngIf="items.length > 1" class="filter-options">
+    <h2>Items</h2>
+    <div *ngFor="let item of items">
+      <input type="checkbox" name="itemFilter" value="{{item}}">
+      <label for="itemFilter">{{ item | titlecase }}</label>
+    </div>
+  </div>
+
+  <div *ngIf="styles.length > 1" class="filter-options">
+    <h2>Styles</h2>
+    <div *ngFor="let style of styles">
+      <input type="checkbox" name="styleFilter" value="{{style}}">
+      <label for="styleFilter">{{ style | titlecase }}</label>
+    </div>
+  </div>
+
+  <div *ngIf="sizes.length > 1" class="filter-options">
+    <h2>Sizes</h2>
+    <div *ngFor="let size of sizes">
+      <input type="checkbox" name="sizeFilter" value="{{size}}">
+      <label for="sizeFilter">{{ size }}</label>
+    </div>
+  </div>
+
+</div>

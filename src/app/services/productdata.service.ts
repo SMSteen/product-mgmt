@@ -6,7 +6,7 @@ import {
   FileSelectDirective
 } from 'ng2-file-upload/ng2-file-upload';
 
-import { Product } from '../app/product';
+import { Product } from '../product';
 
 @Injectable({
   providedIn: 'root'

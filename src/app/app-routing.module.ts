@@ -5,16 +5,37 @@ import { HomeComponent } from './home/home.component';
 import { ShoeListComponent } from './shoes/shoe-list/shoe-list.component';
 import { ShoeNewComponent } from './shoes/shoe-new/shoe-new.component';
 import { ShoeDetailsComponent } from './shoes/shoe-details/shoe-details.component';
+import { ProductResolver } from './resolvers/product.resolver';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', component: HomeComponent },
-  { path: 'products', pathMatch: 'full', component: ShoeListComponent },
   {
-    path: 'products/edit/:id',
+    path: '',
     pathMatch: 'full',
-    component: ShoeDetailsComponent
+    component: HomeComponent
   },
-  { path: 'products/new', pathMatch: 'full', component: ShoeNewComponent }
+  {
+    path: 'products',
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: ShoeListComponent
+      },
+      {
+        path: 'new',
+        pathMatch: 'full',
+        component: ShoeNewComponent
+      },
+      {
+        path: 'edit/:id',
+        pathMatch: 'full',
+        component: ShoeDetailsComponent,
+        resolve: {
+          product: ProductResolver
+        }
+      }
+    ]
+  }
 ];
 
 @NgModule({
